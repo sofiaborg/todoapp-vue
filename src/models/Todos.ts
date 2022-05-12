@@ -1,8 +1,8 @@
 export class Todos {
   status: boolean;
   created: string;
-  constructor(public title: string, public id: number) {
+  constructor(public title: string) {
     this.status = false;
-    this.created = "2022-05-10";
+    this.created = Date.now().toString();
   }
 }

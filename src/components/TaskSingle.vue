@@ -1,8 +1,18 @@
 <template>
   <div class="tasksingle-wrapper">
-    <h3>{{ task.title }}</h3>
-    <button @click="deleteBtn">delete</button>
-    <input type="checkbox" @click="statusToggle()" />
+    <ul>
+      <li>
+        <h3 :class="[{ linethrough: task.status }]">{{ task.title }}</h3>
+        <div class="actionBtns">
+          <input
+            type="checkbox"
+            @click="toggleTaskStatus"
+            :checked="task.status"
+          />
+          <font-awesome-icon class="delete" icon="trash" @click="deleteTask" />
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -13,35 +23,50 @@ import { Todos } from "../models/Todos";
 
 export default class TaskSingle extends Vue {
   @Prop() task!: Todos;
-  @Prop() status!: Todos;
 
-  deleteBtn() {
-    this.$emit("deleteBtn");
+  deleteTask() {
+    this.$emit("deleteTask", this.task.created);
   }
 
-  statusToggle() {
-    this.$emit("statusToggle", this.task.status);
-    console.log(this.task.status);
+  toggleTaskStatus() {
+    this.$emit("toggleTaskStatus", this.task);
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .tasksingle-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   padding-top: 10px;
-  h3 {
-    margin: 0px;
+  ul {
     padding: 0px;
-  }
+    margin: 0px;
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h3 {
+        margin: 0px;
+        padding: 5px;
+      }
+      .linethrough {
+        text-decoration: line-through;
+      }
+      .actionBtns {
+        input {
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+        .delete {
+          padding-left: 10px;
+          color: #d25839;
 
-  button {
-    width: 50px;
-    height: 20px;
-    &:hover {
-      cursor: pointer;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 }
