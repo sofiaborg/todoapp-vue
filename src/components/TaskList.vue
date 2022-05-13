@@ -91,11 +91,11 @@ export default class TaskList extends Vue {
   handleSortCreated(sortedByCreated: string) {
     if (sortedByCreated === "oldest") {
       this.allTasks.sort(function (x, y) {
-        return x.created === y.created ? 0 : x.created ? -1 : 1;
+        return parseInt(x.created) - parseInt(y.created);
       });
     } else if (sortedByCreated === "newest") {
       this.allTasks.sort(function (x, y) {
-        return x.created === y.created ? 0 : x.created ? -1 : 1;
+        return parseInt(y.created) - parseInt(x.created);
       });
     }
   }
