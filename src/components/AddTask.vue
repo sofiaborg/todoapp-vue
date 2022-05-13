@@ -24,7 +24,7 @@ export default class AddTask extends Vue {
       this.minimumChar = "";
     } else if (this.task.length > 15) {
       this.minimumChar = "task can be max 15 characters!";
-    } else {
+    } else if (this.task.length == 0) {
       this.minimumChar = "you need to write something!";
     }
   }
