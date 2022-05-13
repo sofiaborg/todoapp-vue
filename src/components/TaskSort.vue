@@ -2,16 +2,18 @@
 <template>
   <div class="sort-wrapper">
     <div class="sortDiv">
-      <h6>status</h6>
+      <h6>sort by</h6>
       <select name="status" @change="sortStatus($event)">
+        <option selected disabled>status</option>
         <option value="done">done</option>
         <option value="undone">undone</option>
       </select>
     </div>
 
     <div class="sortDiv">
-      <h6>created</h6>
+      <h6>sort by</h6>
       <select name="created" @change="sortCreated($event)">
+        <option selected disabled>created</option>
         <option value="newest">newest</option>
         <option value="oldest">oldest</option>
       </select>
@@ -28,13 +30,13 @@ export default class TaskSort extends Vue {
   @Prop() task!: Todos;
 
   sortStatus(event: Event) {
-    const target = event.target as HTMLSelectElement;
-    this.$emit("sortStatus", target.value);
+    const statusTarget = event.target as HTMLSelectElement;
+    this.$emit("sortStatus", statusTarget.value);
   }
 
   sortCreated(event: Event) {
-    const target = event.target as HTMLSelectElement;
-    this.$emit("sortCreated", target.value);
+    const createdTarget = event.target as HTMLSelectElement;
+    this.$emit("sortCreated", createdTarget.value);
   }
 }
 </script>

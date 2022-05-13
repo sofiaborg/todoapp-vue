@@ -74,12 +74,14 @@ export default class TaskList extends Vue {
 
   //sort by status
   handleSortStatus(sortedByStatus: string) {
-    if (sortedByStatus == "done") {
+    if (sortedByStatus === "done") {
       this.allTasks.sort(function (x, y) {
+        console.log(y.status, x.status);
         return x.status === y.status ? 0 : x.status ? -1 : 1;
       });
     } else if (sortedByStatus === "undone") {
       this.allTasks.sort(function (x, y) {
+        console.log(y.status, x.status);
         return x.status === y.status ? 0 : x.status ? 1 : -1;
       });
     }
@@ -87,10 +89,14 @@ export default class TaskList extends Vue {
 
   //sort by created
   handleSortCreated(sortedByCreated: string) {
-    if (sortedByCreated == "newest") {
-      this.allTasks.sort((x, y) => +new Date(y.created) - +new Date(x.created));
-    } else {
-      console.log("nej");
+    if (sortedByCreated === "newest") {
+      this.allTasks.sort(function (x, y) {
+        return x.created === y.created ? 0 : x.created ? -1 : 1;
+      });
+    } else if (sortedByCreated === "oldest") {
+      this.allTasks.sort(function (x, y) {
+        return x.created === y.created ? 0 : x.created ? -1 : 1;
+      });
     }
   }
 }

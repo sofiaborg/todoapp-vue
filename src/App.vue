@@ -34,6 +34,7 @@ body {
         background-image: url("./assets/laptopBg.svg");
         .main-wrapper {
           background: rgba(242, 243, 245, 1);
+          box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
         }
       }
     }
@@ -45,6 +46,7 @@ body {
           background-image: url("./assets/desktopBg.svg");
           .main-wrapper {
             background: rgba(242, 243, 245, 1);
+            box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
             width: 600px;
             height: 600px;
 
